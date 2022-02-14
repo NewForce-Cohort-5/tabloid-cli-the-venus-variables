@@ -30,6 +30,29 @@ ___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|__
 _|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|
 ___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|__
             ");
+
+            // Get an array with the values of ConsoleColor enumeration members.
+            ConsoleColor[] colors = (ConsoleColor[])ConsoleColor.GetValues(typeof(ConsoleColor));
+            // Save the current background color.
+            ConsoleColor currentBackground = Console.BackgroundColor;
+            // Display each background color except the one that matches the current foreground color.
+            Console.WriteLine("Choose a color to set the background color exxcept for {0}, which is the current background:",
+                              currentBackground);
+           // int choice;
+            for (var i = 0; i < colors.Length; i++)
+            {
+                if (colors[i] == currentBackground) continue;
+                Console.WriteLine($"{i}) {colors[i]}");
+               
+            }
+
+           // choice = Int32.Parse(Console.ReadLine());
+           // if (choice == i)
+           // {
+             //   Console.BackgroundColor = colors[i];
+           // }
+
+
             // MainMenuManager implements the IUserInterfaceManager interface
             IUserInterfaceManager ui = new MainMenuManager();
             while (ui != null)
