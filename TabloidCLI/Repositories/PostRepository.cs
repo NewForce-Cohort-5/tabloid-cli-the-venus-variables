@@ -113,10 +113,11 @@ namespace TabloidCLI.Repositories
                         };
                         posts.Add(post);
                     }
-
+                    // note for git commit - tommy
                     reader.Close();
 
                     return posts;
+
                 }
             }
         }
