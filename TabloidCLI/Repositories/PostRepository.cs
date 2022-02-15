@@ -162,6 +162,8 @@ namespace TabloidCLI.Repositories
 
                     cmd.ExecuteNonQuery();
                 }
+            }
         }
     }
+
 }
