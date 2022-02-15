@@ -124,12 +124,13 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("Title: ");
             post.Title = Console.ReadLine();
 
-            Console.Write("Last Name: ");
+            Console.Write("Url ");
             post.Url = Console.ReadLine();
 
-            //Console.Write("Bio: ");
-            //post. = Console.ReadLine();
-            //???????????????May need to come back?????????
+            Console.Write($"{DateTime.Now.ToString("MM/dd/yyyy HH’:’mm’:’ss ‘GMT’")} ");
+            post.PublishDateTime = DateTime.Now;
+                       
+
 
             _postRepository.Insert(post);
         }
