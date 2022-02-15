@@ -27,7 +27,6 @@ namespace TabloidCLI.UserInterfaceManagers
             Blog blog = _blogRepository.Get(_blogId);
             Console.WriteLine($"{blog.Title} Details");
             Console.WriteLine(" 1) View");
-            
             Console.WriteLine(" 2) Add Tag");
             Console.WriteLine(" 3) Remove Tag");
             Console.WriteLine(" 0) Go Back");
@@ -40,12 +39,9 @@ namespace TabloidCLI.UserInterfaceManagers
                     View();
                     return this;
                 case "2":
-                    ViewBlogPosts();
-                    return this;
-                case "3":
                     AddTag();
                     return this;
-                case "4":
+                case "3":
                     RemoveTag();
                     return this;
                 case "0":
