@@ -157,13 +157,11 @@ namespace TabloidCLI.Repositories
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO AuthorTag (AuthorId, TagId)
-                                                       VALUES (@authorId, @tagId)";
-                    cmd.Parameters.AddWithValue("@authorId", author.Id);
-                    cmd.Parameters.AddWithValue("@tagId", tag.Id);
+                    cmd.CommandText = @"DELETE FROM Post WHERE id = @id";
+                    cmd.Parameters.AddWithValue("@id", id);
+
                     cmd.ExecuteNonQuery();
                 }
-            }
         }
     }
 }
