@@ -27,9 +27,9 @@ namespace TabloidCLI.UserInterfaceManagers
             Blog blog = _blogRepository.Get(_blogId);
             Console.WriteLine($"{blog.Title} Details");
             Console.WriteLine(" 1) View");
-            Console.WriteLine(" 2) View Blog Posts");
-            Console.WriteLine(" 3) Add Tag");
-            Console.WriteLine(" 4) Remove Tag");
+            
+            Console.WriteLine(" 2) Add Tag");
+            Console.WriteLine(" 3) Remove Tag");
             Console.WriteLine(" 0) Go Back");
 
             Console.Write("> ");
