@@ -70,12 +70,17 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
+        /// <summary>
+        /// This lists the posts by title when "4" is chosen
+        /// </summary>
         private void List()
         {
-            List<Post> posts = _postRepository.GetAll();
+            List<Post> posts = 
+               _postRepository.GetAll();
             foreach (Post post in posts)
             {
-                Console.WriteLine(post);
+                Console.WriteLine($"Title {post.Title}");
+                Console.WriteLine($"Url {post.Url}");
             }
         }
 
