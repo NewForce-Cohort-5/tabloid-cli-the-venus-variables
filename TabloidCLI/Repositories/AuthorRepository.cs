@@ -10,6 +10,8 @@ namespace TabloidCLI
     {
         public AuthorRepository(string connectionString) : base(connectionString) { }
 
+
+       
         public List<Author> GetAll()
         {
             using (SqlConnection conn = Connection)
