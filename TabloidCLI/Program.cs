@@ -79,6 +79,7 @@ ___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|__
                 case "7":
                     Console.BackgroundColor = ConsoleColor.Gray;
                     Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Black;
                     break;
                 case "8":
                     Console.BackgroundColor = ConsoleColor.DarkGray;
@@ -95,6 +96,7 @@ ___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|__
                 case "11":
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Black;
                     break;
                 case "12":
                     Console.BackgroundColor = ConsoleColor.Red;
