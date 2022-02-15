@@ -83,8 +83,8 @@ namespace TabloidCLI.UserInterfaceManagers
                _postRepository.GetAll();
             foreach (Post post in posts)
             {
-                Console.WriteLine($"Title {post.Title}");
-                Console.WriteLine($"Url {post.Url}");
+                Console.WriteLine($"Title: {post.Title}");
+                Console.WriteLine($"Url: {post.Url}");
             }
         }
 
@@ -190,16 +190,16 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("Title: ");
             post.Title = Console.ReadLine();
 
-            Console.Write("Url ");
+            Console.Write("Url: ");
             post.Url = Console.ReadLine();
 
-            Console.Write("Publish Date Time: ");
+            Console.Write("Publish Date Time: mm/dd/yyyy ");
             post.PublishDateTime = DateTime.Parse(Console.ReadLine());
 
 
             //authors and blogs list to select
-            post.Author = AChoose();
-          post.Blog = BChoose();
+            post.Author = AChoose("Please choose an Author:");
+          post.Blog = BChoose("Pleas choose a Blog:");
 
             _postRepository.Insert(post);
         }
