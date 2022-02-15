@@ -112,8 +112,11 @@ namespace TabloidCLI.UserInterfaceManagers
             }
             else
             {
+                Console.WriteLine("-----Blogs-----");
                 blogResults.Display();
+                Console.WriteLine("----Authors----");
                 authorResults.Display();
+                Console.WriteLine("-----Posts-----");
                 postResults.Display();
             }
         }
