@@ -193,11 +193,12 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("Url ");
             post.Url = Console.ReadLine();
 
-            post.PublishDateTime = DateTime.Now;
+            Console.Write("Publish Date Time: ");
+            post.PublishDateTime = DateTime.Parse(Console.ReadLine());
 
 
             //authors and blogs list to select
-           post.Author = AChoose();
+            post.Author = AChoose();
           post.Blog = BChoose();
 
             _postRepository.Insert(post);
