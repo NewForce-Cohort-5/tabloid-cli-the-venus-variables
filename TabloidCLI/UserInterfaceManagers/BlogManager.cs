@@ -142,7 +142,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Remove()
         {
-            Blog blogToDelete = Choose("Which author would you like to remove?");
+            Blog blogToDelete = Choose("Which blog would you like to remove?");
             if (blogToDelete != null)
             {
                 _blogRepository.Delete(blogToDelete.Id);
