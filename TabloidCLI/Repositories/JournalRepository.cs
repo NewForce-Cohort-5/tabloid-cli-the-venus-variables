@@ -37,7 +37,7 @@ namespace TabloidCLI
                             Content = reader.GetString(reader.GetOrdinal("Content")),
                             CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
                         };
-                        journal.Add(journal);
+                        journals.Add(journal);
                     }
 
                     reader.Close();
@@ -54,12 +54,10 @@ namespace TabloidCLI
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT a.Id AS JournalId,
-                                               a.Title,
-                                               a.Content,
-                                               a.CreateDateTime,
-                                               t.Id AS TagId,
-                                               t.Name
+                    cmd.CommandText = @"SELECT id ,
+                                               Title,
+                                               Content,
+                                               CreateDateTime,
                                           FROM Journal";
 
                     cmd.Parameters.AddWithValue("@id", id);
@@ -73,7 +71,7 @@ namespace TabloidCLI
                         {
                             journal = new Journal()
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("AuthorId")),
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Content = reader.GetString(reader.GetOrdinal("Content")),
                                 CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),

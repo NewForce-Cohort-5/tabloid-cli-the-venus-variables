@@ -66,7 +66,7 @@ namespace TabloidCLI.UserInterfaceManagers
             List<Journal> journals = _journalRepository.GetAll();
             foreach (Journal journal in journals)
             {
-                Console.WriteLine(journal);
+                Console.WriteLine(journal.Title);
             }
         }
 
@@ -112,11 +112,9 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("Content: ");
             journal.Content = Console.ReadLine();
 
-            //Need to get the date and tiem for now
-            DateTime localDate = DateTime.Now();
+            DateTime localDate = DateTime.Now;
             journal.CreateDateTime = localDate;
 
-            //Journal Repository needs an Insert() method
             _journalRepository.Insert(journal);
         }
 
@@ -141,11 +139,10 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 journalToEdit.Content = content;
             }
-            // update and set a new DateTime here
-            DateTime createDateTime = DateTime.Now();
+
+            DateTime createDateTime = DateTime.Now;
                 journalToEdit.CreateDateTime = createDateTime;
             
-            //Journal Repository needs an Update() method
             _journalRepository.Update(journalToEdit);
         }
 
