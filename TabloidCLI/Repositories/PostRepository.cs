@@ -113,17 +113,36 @@ namespace TabloidCLI.Repositories
                         };
                         posts.Add(post);
                     }
-
+                    // note for git commit - tommy
                     reader.Close();
 
                     return posts;
+
                 }
             }
         }
 
         public void Insert(Post post)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Post (Title, Url, PublishDateTime, AuthorId, BlogId )
+
+                                                     VALUES (@title, @url, @publishDateTime, @authorId, @blogId)";
+                    cmd.Parameters.AddWithValue("@title", post.Title);
+                    cmd.Parameters.AddWithValue("@url", post.Url);
+                    cmd.Parameters.AddWithValue("@publishDateTime", post.PublishDateTime);
+                    cmd.Parameters.AddWithValue("@authorId", post.Author.Id);
+                    cmd.Parameters.AddWithValue("@blogId", post.Blog.Id);
+
+                    cmd.ExecuteNonQuery();
+
+                    
+                }
+            }
         }
 
         public void Update(Post post)
