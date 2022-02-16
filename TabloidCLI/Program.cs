@@ -31,12 +31,24 @@ _|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|
 ___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|__
             ");
 
+            ChooseBackgroundColor();            
 
+            // MainMenuManager implements the IUserInterfaceManager interface
+            IUserInterfaceManager ui = new MainMenuManager();
+            while (ui != null)
+            {
+                // Each call to Execute will return the next IUserInterfaceManager we should execute
+                // When it returns null, we should exit the program;
+                ui = ui.Execute();
+            }
+        }
+
+        static void ChooseBackgroundColor()
+        {
             // Get an array with the values of ConsoleColor enumeration members.
             ConsoleColor[] colors = (ConsoleColor[])ConsoleColor.GetValues(typeof(ConsoleColor));
             // Save the current background color.
             ConsoleColor currentBackground = Console.BackgroundColor;
-            // Display each background color except the one that matches the current foreground color.
             Console.WriteLine("Choose a color to set the background color. Press '0' to keep the color as is.");
             // int choice;
             for (var i = 0; i < colors.Length; i++)
@@ -47,11 +59,12 @@ ___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|__
             }
 
             string choice = Console.ReadLine();
+
             switch (choice)
             {
                 case "0":
                     break;
-                case "1": 
+                case "1":
                     Console.BackgroundColor = ConsoleColor.DarkBlue;
                     Console.Clear();
                     break;
@@ -119,15 +132,6 @@ ___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|__
                 default:
                     Console.WriteLine("Invalid Selection");
                     break;
-            }
-
-            // MainMenuManager implements the IUserInterfaceManager interface
-            IUserInterfaceManager ui = new MainMenuManager();
-            while (ui != null)
-            {
-                // Each call to Execute will return the next IUserInterfaceManager we should execute
-                // When it returns null, we should exit the program;
-                ui = ui.Execute();
             }
         }
     }
