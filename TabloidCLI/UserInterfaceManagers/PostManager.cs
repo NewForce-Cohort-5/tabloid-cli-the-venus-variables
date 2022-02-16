@@ -241,10 +241,34 @@ namespace TabloidCLI.UserInterfaceManagers
                 postToEdit.PublishDateTime = DateTime.Parse(publishDateTime);
             }
 
-        
-            postToEdit.Author = AChoose($"Please Choose an author to edit or leave blank to unchange: Current Author: {postToEdit.Author.FullName}");
 
-            postToEdit.Blog = BChoose($"Please Choose an Blog to edit or leave blank to unchange ");
+            Console.Write($"The current author is {postToEdit.Author.FullName}");
+
+            Console.WriteLine("Would you like to change the author? ");
+            Console.WriteLine("1: Yes ");
+            Console.WriteLine("Anyting else: No ");
+            string authorChoice = Console.ReadLine();
+
+
+            if (authorChoice == "1")
+            {
+                postToEdit.Author = AChoose($"Please Choose an author to edit or leave blank to unchange: Current Author: {postToEdit.Author.FullName}");
+            }
+           
+
+
+            Console.WriteLine("Would you like to change the Blog? ");
+            Console.WriteLine("1: Yes ");
+            Console.WriteLine("Anything else: No ");
+            string blogChoice = Console.ReadLine();
+
+            if (blogChoice == "1")
+            {
+              postToEdit.Blog = BChoose($"Please Choose an Blog to edit:   Current Blog: {postToEdit.Blog.Title}");
+            }
+            
+
+
             _postRepository.Update(postToEdit);
         }
 
