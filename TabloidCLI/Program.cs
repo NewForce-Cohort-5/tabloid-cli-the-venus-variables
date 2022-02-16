@@ -31,6 +31,7 @@ _|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|
 ___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|__
             ");
 
+            // Calling to prompt user to choose a background color with a list of available color choices
             ChooseBackgroundColor();            
 
             // MainMenuManager implements the IUserInterfaceManager interface
@@ -63,6 +64,7 @@ ___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|__
             switch (choice)
             {
                 case "0":
+                    Console.Clear();
                     break;
                 case "1":
                     Console.BackgroundColor = ConsoleColor.DarkBlue;
