@@ -104,7 +104,7 @@ namespace TabloidCLI.UserInterfaceManagers
             note.CreationDate = localDate;
 
             //Do we need to incldue anything about the post that it links to?
-
+            
             _noteRepository.Insert(note);
         }
 
