@@ -231,22 +231,17 @@ namespace TabloidCLI.UserInterfaceManagers
                 postToEdit.Url = url;
             }
 
-            //Console.Write("New Url (blank to leave unchanged: ");
-            //DateTime publishDateTime = DateTime.Parse(Console.ReadLine());
-            //if (!String.IsNullOrWhiteSpace(DateTime.Parse(publishDateTime))
-            //{
-            //    postToEdit.PublishDateTime = publishDateTime;
-            //}
-            //Console.Write("New Author (blank to leave unchanged: ");
-            //string author = GetInt32(AChoose("Please choose an Author"));
+            Console.Write("New Date (blank to leave unchanged: ");
+            DateTime publishDateTime = DateTime.Parse(Console.ReadLine());
+           
+                postToEdit.PublishDateTime = publishDateTime;
+           
           
-                postToEdit.Author = AChoose("Please Choose an author to edit or leave blank to unchange");
+
+            postToEdit.Author = AChoose("Please Choose an author to edit or leave blank to unchange");
 
             postToEdit.Blog = BChoose("Please Choose an Blog to edit or leave blank to unchange");
-            //if (!string.IsNullOrWhiteSpace(url))
-            //{
-            //    postToEdit.Url = url;
-            //}
+          
 
 
 
