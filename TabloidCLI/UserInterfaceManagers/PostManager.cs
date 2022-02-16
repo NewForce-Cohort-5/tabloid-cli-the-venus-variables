@@ -239,7 +239,12 @@ namespace TabloidCLI.UserInterfaceManagers
             //}
             //Console.Write("New Author (blank to leave unchanged: ");
             //string author = GetInt32(AChoose("Please choose an Author"));
-            //postToEdit.Author = AChoose("Please Choose an author to edit or leave blank"); 
+            postToEdit.Author = AChoose("Please Choose an author to edit or leave blank to unchange");
+            
+            //if (!string.IsNullOrWhiteSpace(url))
+            //{
+            //    postToEdit.Url = url;
+            //}
 
 
 
