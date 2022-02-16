@@ -216,7 +216,6 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 return;
             }
-
             Console.WriteLine();
             Console.Write("New Title (blank to leave unchanged: ");
             string title = Console.ReadLine();
@@ -231,10 +230,6 @@ namespace TabloidCLI.UserInterfaceManagers
                 postToEdit.Url = url;
             }
 
-            //Console.Write("New Date (blank to leave unchanged: ");
-            //DateTime publishDateTime = DateTime.Parse(Console.ReadLine());
-
-            //    postToEdit.PublishDateTime = publishDateTime;
 
             Console.Write("New Date (blank to leave unchanged: ");
             string publishDateTime = Console.ReadLine();
@@ -245,16 +240,9 @@ namespace TabloidCLI.UserInterfaceManagers
 
 
             postToEdit.Author = AChoose("Please Choose an author to edit or leave blank to unchange");
-                      
-
             postToEdit.Blog = BChoose("Please Choose an Blog to edit or leave blank to unchange");
-          
-
-
-
             _postRepository.Update(postToEdit);
         }
-
 
         private void Remove()
         {
