@@ -54,7 +54,7 @@ namespace TabloidCLI.UserInterfaceManagers
                     {
 
                         return
-                            
+
                             new PostDetailManager(this, _connectionString, post.Id);
                     }
                 case "3":
@@ -79,7 +79,7 @@ namespace TabloidCLI.UserInterfaceManagers
         /// </summary>
         private void List()
         {
-            List<Post> posts = 
+            List<Post> posts =
                _postRepository.GetAll();
             foreach (Post post in posts)
             {
@@ -119,6 +119,9 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
+       
+       
+
         private Blog BChoose(string prompt = null)
         {
             if (prompt == null)
@@ -150,7 +153,9 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-        private Post Choose(string prompt = null)
+       
+
+    private Post Choose(string prompt = null)
         {
             if (prompt == null)
             {
@@ -199,7 +204,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
             //authors and blogs list to select
             post.Author = AChoose("Please choose an Author:");
-          post.Blog = BChoose("Pleas choose a Blog:");
+            post.Blog = BChoose("Pleas choose a Blog:");
 
             _postRepository.Insert(post);
         }
@@ -225,15 +230,22 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 postToEdit.Url = url;
             }
-            //Console.Write("New bio (blank to leave unchanged: ");
-            //string bio = Console.ReadLine();
-            //if (!string.IsNullOrWhiteSpace(bio))
+
+            //Console.Write("New Url (blank to leave unchanged: ");
+            //DateTime publishDateTime = DateTime.Parse(Console.ReadLine());
+            //if (!String.IsNullOrWhiteSpace(DateTime.Parse(publishDateTime))
             //{
-            //    authorToEdit.Bio = bio;
+            //    postToEdit.PublishDateTime = publishDateTime;
             //}
+            //Console.Write("New Author (blank to leave unchanged: ");
+            //string author = GetInt32(AChoose("Please choose an Author"));
+            //postToEdit.Author = AChoose("Please Choose an author to edit or leave blank"); 
+
+
 
             _postRepository.Update(postToEdit);
         }
+
 
         private void Remove()
         {
