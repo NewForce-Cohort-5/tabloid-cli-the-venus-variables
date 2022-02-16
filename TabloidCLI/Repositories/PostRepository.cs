@@ -69,7 +69,7 @@ namespace TabloidCLI.Repositories
                                                p.Title,
                                                p.Url,
                                                p.PublishDateTime,
-                                               p.Id AS TagId,
+                                               t.Id AS TagId,
                                                  t.Name       
                                        
                                           FROM Post p 
