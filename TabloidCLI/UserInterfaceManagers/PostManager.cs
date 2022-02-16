@@ -217,13 +217,15 @@ namespace TabloidCLI.UserInterfaceManagers
                 return;
             }
             Console.WriteLine();
-            Console.Write("New Title (blank to leave unchanged: ");
+            Console.Write($"New Title (blank to leave unchanged:  Current Title:{postToEdit.Title} ");
             string title = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(title))
             {
                 postToEdit.Title = title;
             }
-            Console.Write("New Url (blank to leave unchanged: ");
+
+
+            Console.Write($"New Url (blank to leave unchanged:  Current Url {postToEdit.Url}");
             string url = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(url))
             {
@@ -231,16 +233,18 @@ namespace TabloidCLI.UserInterfaceManagers
             }
 
 
-            Console.Write("New Date (blank to leave unchanged: ");
+            Console.Write($"New Date (blank to leave unchanged:  Current Date: {postToEdit.PublishDateTime}");
+
             string publishDateTime = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(publishDateTime))
             {
                 postToEdit.PublishDateTime = DateTime.Parse(publishDateTime);
             }
 
+        
+            postToEdit.Author = AChoose($"Please Choose an author to edit or leave blank to unchange: Current Author: {postToEdit.Author.FullName}");
 
-            postToEdit.Author = AChoose("Please Choose an author to edit or leave blank to unchange");
-            postToEdit.Blog = BChoose("Please Choose an Blog to edit or leave blank to unchange");
+            postToEdit.Blog = BChoose($"Please Choose an Blog to edit or leave blank to unchange ");
             _postRepository.Update(postToEdit);
         }
 
