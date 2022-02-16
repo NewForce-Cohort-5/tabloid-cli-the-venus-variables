@@ -245,6 +245,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
 
             postToEdit.Author = AChoose("Please Choose an author to edit or leave blank to unchange");
+                      
 
             postToEdit.Blog = BChoose("Please Choose an Blog to edit or leave blank to unchange");
           
