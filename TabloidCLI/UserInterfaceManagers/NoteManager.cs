@@ -93,7 +93,7 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             if (prompt == null)
             {
-                prompt = "Please choose an Author:";
+                prompt = "Please choose a Post:";
             }
 
             Console.WriteLine(prompt);
@@ -132,11 +132,12 @@ namespace TabloidCLI.UserInterfaceManagers
             note.Content = Console.ReadLine();
 
             DateTime localDate = DateTime.Now;
-            note.CreationDate = localDate;
+            note.CreateDateTime = localDate;
 
-            //Do we need to incldue anything about the post that it links to?
+            note.Post = PChoose("Please choose a post: ");
             
             _noteRepository.Insert(note);
+    
         }
 
 

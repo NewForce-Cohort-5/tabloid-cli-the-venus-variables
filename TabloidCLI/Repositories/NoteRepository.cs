@@ -18,7 +18,7 @@ namespace TabloidCLI
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT id, Name FROM Note";
+                    cmd.CommandText = @"SELECT id, Title, Content, CreateDateTime FROM Note";
                     List<Note> notes = new List<Note>();
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -29,7 +29,7 @@ namespace TabloidCLI
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Title = reader.GetString(reader.GetOrdinal("Title")),
                             Content = reader.GetString(reader.GetOrdinal("Content")),
-                            CreationDate = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
+                            CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
                             
                         };
                         notes.Add(note);
@@ -52,7 +52,7 @@ namespace TabloidCLI
                     cmd.CommandText = @"SELECT n.Id as NoteId
                                                n.Title,
                                                n.Content,
-                                               n.CreationDate
+                                               n.CreateDateTime
                                         FROM Note n
                                         LEFT JOIN Post p on n.PostId = p.Id 
                                         WHERE id = @id";
@@ -71,7 +71,7 @@ namespace TabloidCLI
                                 Id = reader.GetInt32(reader.GetOrdinal("NoteId")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Content = reader.GetString(reader.GetOrdinal("Content")),
-                                CreationDate = reader.GetDateTime(reader.GetOrdinal("CreationDate")),
+                                CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
                             };
                         }
                     }
@@ -90,12 +90,12 @@ namespace TabloidCLI
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"INSERT INTO Note (Title, Content, CreationDate, PostId)
+                    cmd.CommandText = @"INSERT INTO Note (Title, Content, CreateDateTime, PostId)
                                                      VALUES (@title, @content, @createDateTime, @postId)";
 
                     cmd.Parameters.AddWithValue("@title", note.Title);
                     cmd.Parameters.AddWithValue("@content", note.Content);
-                    cmd.Parameters.AddWithValue("@createDateTime", note.CreationDate);
+                    cmd.Parameters.AddWithValue("@createDateTime", note.CreateDateTime);
                     cmd.Parameters.AddWithValue("@postId", note.Post.Id);
 
                     cmd.ExecuteNonQuery();
