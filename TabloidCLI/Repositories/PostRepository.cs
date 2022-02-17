@@ -45,6 +45,7 @@ namespace TabloidCLI.Repositories
                             Title = reader.GetString(reader.GetOrdinal("PostTitle")),
                             Url = reader.GetString(reader.GetOrdinal("PostUrl")),
                             PublishDateTime = reader.GetDateTime(reader.GetOrdinal("PublishDateTime")),
+
                             Author = new Author()
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("AuthorId")),
@@ -52,6 +53,7 @@ namespace TabloidCLI.Repositories
                                 LastName = reader.GetString(reader.GetOrdinal("LastName")),
                                 Bio = reader.GetString(reader.GetOrdinal("Bio")),
                             },
+
                             Blog = new Blog()
                             {
                                 Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
@@ -89,7 +91,7 @@ namespace TabloidCLI.Repositories
                                                p.Url,
                                                p.PublishDateTime,
                                                t.Id AS TagId,
-                                                 t.Name       
+                                               t.Name       
                                        
                                           FROM Post p 
                                                LEFT JOIN PostTag pt on p.Id = pt.PostId
@@ -113,19 +115,19 @@ namespace TabloidCLI.Repositories
                                 Url = reader.GetString(reader.GetOrdinal("Url")),
                           
                                 PublishDateTime = reader.GetDateTime(reader.GetOrdinal("PublishDateTime")),
-                                Author = new Author()
-                                {
-                                    Id = reader.GetInt32(reader.GetOrdinal("AuthorId")),
-                                    FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
-                                    LastName = reader.GetString(reader.GetOrdinal("LastName")),
-                                    Bio = reader.GetString(reader.GetOrdinal("Bio")),
-                                },
-                                Blog = new Blog()
-                                {
-                                    Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
-                                    Title = reader.GetString(reader.GetOrdinal("BlogTitle")),
-                                    Url = reader.GetString(reader.GetOrdinal("BlogUrl")),
-                                }
+                                //Author = new Author()
+                                //{
+                                //    Id = reader.GetInt32(reader.GetOrdinal("AuthorId")),
+                                //    FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                //    LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                                //    Bio = reader.GetString(reader.GetOrdinal("Bio")),
+                                //},
+                                //Blog = new Blog()
+                                //{
+                                //    Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
+                                //    Title = reader.GetString(reader.GetOrdinal("BlogTitle")),
+                                //    Url = reader.GetString(reader.GetOrdinal("BlogUrl")),
+                                //}
                             };
                         }
 
