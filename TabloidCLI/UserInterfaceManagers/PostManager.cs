@@ -216,41 +216,61 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 return;
             }
-
             Console.WriteLine();
-            Console.Write("New Title (blank to leave unchanged: ");
+            Console.Write($"New Title (blank to leave unchanged:  Current Title:{postToEdit.Title} ");
             string title = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(title))
             {
                 postToEdit.Title = title;
             }
-            Console.Write("New Url (blank to leave unchanged: ");
+
+
+            Console.Write($"New Url (blank to leave unchanged:  Current Url {postToEdit.Url}");
             string url = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(url))
             {
                 postToEdit.Url = url;
             }
 
-            //Console.Write("New Url (blank to leave unchanged: ");
-            //DateTime publishDateTime = DateTime.Parse(Console.ReadLine());
-            //if (!String.IsNullOrWhiteSpace(DateTime.Parse(publishDateTime))
-            //{
-            //    postToEdit.PublishDateTime = publishDateTime;
-            //}
-            //Console.Write("New Author (blank to leave unchanged: ");
-            //string author = GetInt32(AChoose("Please choose an Author"));
-            postToEdit.Author = AChoose("Please Choose an author to edit or leave blank to unchange");
-            
-            //if (!string.IsNullOrWhiteSpace(url))
-            //{
-            //    postToEdit.Url = url;
-            //}
 
+            Console.Write($"New Date (blank to leave unchanged:  Current Date: {postToEdit.PublishDateTime}");
+
+            string publishDateTime = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(publishDateTime))
+            {
+                postToEdit.PublishDateTime = DateTime.Parse(publishDateTime);
+            }
+
+
+            Console.Write($"The current author is {postToEdit.Author.FullName}");
+
+            Console.WriteLine("Would you like to change the author? ");
+            Console.WriteLine("1: Yes ");
+            Console.WriteLine("Anyting else: No ");
+            string authorChoice = Console.ReadLine();
+
+
+            if (authorChoice == "1")
+            {
+                postToEdit.Author = AChoose($"Please Choose an author to edit or leave blank to unchange: Current Author: {postToEdit.Author.FullName}");
+            }
+           
+
+
+            Console.WriteLine("Would you like to change the Blog? ");
+            Console.WriteLine("1: Yes ");
+            Console.WriteLine("Anything else: No ");
+            string blogChoice = Console.ReadLine();
+
+            if (blogChoice == "1")
+            {
+              postToEdit.Blog = BChoose($"Please Choose an Blog to edit:   Current Blog: {postToEdit.Blog.Title}");
+            }
+            
 
 
             _postRepository.Update(postToEdit);
         }
-
 
         private void Remove()
         {
