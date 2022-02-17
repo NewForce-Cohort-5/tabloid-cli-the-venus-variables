@@ -11,16 +11,20 @@ namespace TabloidCLI
     {
         public NoteRepository(string connectionString) : base(connectionString) { }
 
-        public List<Note> GetAll()
+        public List<Note> GetAll(int postId)
         {
             using (SqlConnection conn = Connection)
             {
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT id, Title, Content, CreateDateTime FROM Note";
+                    cmd.CommandText = @"SELECT id, Title, Content, CreateDateTime 
+                                            FROM Note
+                                            WHERE PostId = @postId
+                                            ";
                     List<Note> notes = new List<Note>();
 
+                    cmd.Parameters.AddWithValue("@postId", postId);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {

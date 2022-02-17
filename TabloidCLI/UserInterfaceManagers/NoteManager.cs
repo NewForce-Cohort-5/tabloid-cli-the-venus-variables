@@ -11,13 +11,15 @@ namespace TabloidCLI.UserInterfaceManagers
         private NoteRepository _noteRepository;
         private PostRepository _postRepository;
         private string _connectionString;
+        private int _postId;
 
-        public NoteManager(IUserInterfaceManager parentUI, string connectionString)
+        public NoteManager(IUserInterfaceManager parentUI, string connectionString, int postId)
         {
             _parentUI = parentUI;
             _noteRepository = new NoteRepository(connectionString);
             _postRepository = new PostRepository(connectionString);
             _connectionString = connectionString;
+            _postId = postId;
         }
 
         public IUserInterfaceManager Execute()
@@ -33,10 +35,10 @@ namespace TabloidCLI.UserInterfaceManagers
             switch (choice)
             {
                 case "1":
-                    List();
+                    List(_postId);
                     return this;
                 case "2":
-                    Add();
+                    Add(_postId);
                     return this;
                 case "3":
                     Remove();
@@ -49,13 +51,16 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-        private void List()
+        private void List(int postId)
         {
-            List<Note> notes = _noteRepository.GetAll();
+
+            List<Note> notes = _noteRepository.GetAll(postId);
+
             foreach (Note note in notes)
             {
                 Console.WriteLine(note);
             }
+            
         }
 
         private Note Choose(string prompt = null)
@@ -120,7 +125,7 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-        private void Add()
+        private void Add(int postId)
         {
             Console.WriteLine("New Note");
             Note note = new Note();
@@ -134,13 +139,16 @@ namespace TabloidCLI.UserInterfaceManagers
             DateTime localDate = DateTime.Now;
             note.CreateDateTime = localDate;
 
-            note.Post = PChoose("Please choose a post: ");
+            note.Post = new Post()
+            {
+                Id = postId
+            };
             
             _noteRepository.Insert(note);
     
         }
 
-
+        +
         private void Remove()
         {
             Note noteToDelete = Choose("Which note would you like to remove?");

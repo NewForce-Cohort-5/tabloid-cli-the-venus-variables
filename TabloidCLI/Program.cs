@@ -56,7 +56,6 @@ ___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|___|__
             {
                 if (colors[i] == currentBackground) continue;
                 Console.WriteLine($"{i}) {colors[i]}");
-
             }
 
             string choice = Console.ReadLine();
