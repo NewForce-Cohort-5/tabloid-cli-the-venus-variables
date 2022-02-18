@@ -144,6 +144,10 @@ namespace TabloidCLI
             }
         }
 
+        public List<Journal> GetAll(int postId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

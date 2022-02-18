@@ -180,5 +180,10 @@ namespace TabloidCLI
                 }
             }
         }
+
+        public List<Blog> GetAll(int postId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
