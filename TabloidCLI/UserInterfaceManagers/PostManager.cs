@@ -16,6 +16,7 @@ namespace TabloidCLI.UserInterfaceManagers
         private AuthorRepository _authorRepository;
         private BlogRepository _blogRepository;
         private PostRepository _postRepository;
+        private NoteRepository _noteRepository;
         private string _connectionString;
 
         public PostManager(IUserInterfaceManager parentUI, string connectionString)
@@ -24,6 +25,7 @@ namespace TabloidCLI.UserInterfaceManagers
             _authorRepository = new AuthorRepository(connectionString);
             _blogRepository = new BlogRepository(connectionString);
             _postRepository = new PostRepository(connectionString);
+            _noteRepository = new NoteRepository(connectionString);
             _connectionString = connectionString;
         }
 
@@ -83,8 +85,8 @@ namespace TabloidCLI.UserInterfaceManagers
                _postRepository.GetAll();
             foreach (Post post in posts)
             {
-                Console.WriteLine($"Title: {post.Title}");
-                Console.WriteLine($"Url: {post.Url}");
+                Console.WriteLine(post);
+                ;
             }
         }
 
@@ -119,8 +121,8 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-       
-       
+
+
 
         private Blog BChoose(string prompt = null)
         {
@@ -153,9 +155,9 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-       
 
-    private Post Choose(string prompt = null)
+
+        private Post Choose(string prompt = null)
         {
             if (prompt == null)
             {
@@ -254,7 +256,7 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 postToEdit.Author = AChoose($"Please Choose an author to edit or leave blank to unchange: Current Author: {postToEdit.Author.FullName}");
             }
-           
+
 
 
             Console.WriteLine("Would you like to change the Blog? ");
@@ -264,9 +266,9 @@ namespace TabloidCLI.UserInterfaceManagers
 
             if (blogChoice == "1")
             {
-              postToEdit.Blog = BChoose($"Please Choose an Blog to edit:   Current Blog: {postToEdit.Blog.Title}");
+                postToEdit.Blog = BChoose($"Please Choose an Blog to edit:   Current Blog: {postToEdit.Blog.Title}");
             }
-            
+
 
 
             _postRepository.Update(postToEdit);
@@ -275,13 +277,32 @@ namespace TabloidCLI.UserInterfaceManagers
         private void Remove()
         {
             Post postToDelete = Choose("Which post would you like to remove?");
-            if (postToDelete != null)
-            {
-                _postRepository.Delete(postToDelete.Id);
+            
+            List<Note> notesToDelete = _noteRepository.GetAll();
+
+
+            int NoteIdDelete = 0;
+
+                foreach (Note noteToDelete in notesToDelete)
+                {
+                    if (postToDelete.Id == noteToDelete.Post.Id)
+                    {
+                        NoteIdDelete = noteToDelete.Id;
+                    }
+
+                    if (postToDelete != null && NoteIdDelete != 0)
+
+                    {
+                        _noteRepository.Delete(NoteIdDelete);
+                        _postRepository.Delete(postToDelete.Id);
+
+                    }
+
+                }
             }
         }
     }
-}
+
 
 
 
