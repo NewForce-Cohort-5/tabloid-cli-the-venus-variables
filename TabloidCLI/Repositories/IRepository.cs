@@ -4,7 +4,7 @@ namespace TabloidCLI
 {
     public interface IRepository<TEntity>
     {
-        List<TEntity> GetAll();
+        List<TEntity> GetAll(int postId);
         TEntity Get(int id);
         void Insert(TEntity entry);
         void Update(TEntity entry);

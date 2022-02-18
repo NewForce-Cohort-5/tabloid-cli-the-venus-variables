@@ -10,6 +10,8 @@ namespace TabloidCLI
     {
         public AuthorRepository(string connectionString) : base(connectionString) { }
 
+
+       
         public List<Author> GetAll()
         {
             using (SqlConnection conn = Connection)
@@ -187,5 +189,10 @@ namespace TabloidCLI
                 }
             }
         }
-     }
+
+        public List<Author> GetAll(int postId)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
