@@ -18,7 +18,15 @@ namespace TabloidCLI
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT id, Title, Content, CreateDateTime FROM Note";
+                    cmd.CommandText = @"SELECT n.id,
+                                        n.Title,
+                                        n.Content, 
+                                        n.CreateDateTime,
+                                        n.PostId as NotePostId,
+                                        p.Id as PostPostId
+                                          FROM Note n
+                                    LEFT JOIN Post p on p.Id = n.PostId";
+
                     List<Note> notes = new List<Note>();
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -31,6 +39,10 @@ namespace TabloidCLI
                             Content = reader.GetString(reader.GetOrdinal("Content")),
                             CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime")),
                             
+                            Post = new Post()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("PostPostId")),
+                            }
                         };
                         notes.Add(note);
                     }
