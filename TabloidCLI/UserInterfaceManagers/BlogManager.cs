@@ -145,7 +145,14 @@ namespace TabloidCLI.UserInterfaceManagers
             Blog blogToDelete = Choose("Which blog would you like to remove?");
             if (blogToDelete != null)
             {
-                _blogRepository.Delete(blogToDelete.Id);
+                try
+                {
+                    _blogRepository.Delete(blogToDelete.Id);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Can't delete!  Remove all tags associated with this blog first.");
+                }
             }
         }
     }

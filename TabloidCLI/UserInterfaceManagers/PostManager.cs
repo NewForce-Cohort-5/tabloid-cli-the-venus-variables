@@ -277,7 +277,14 @@ namespace TabloidCLI.UserInterfaceManagers
             Post postToDelete = Choose("Which post would you like to remove?");
             if (postToDelete != null)
             {
-                _postRepository.Delete(postToDelete.Id);
+                try
+                {
+                    _postRepository.Delete(postToDelete.Id);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Can't delete!  Remove all notes and tags associated with this post first.");
+                }
             }
         }
     }
