@@ -362,6 +362,11 @@ PublishDateTime = @publishDateTime,
                     }
                 }
             }
+
+        public List<Post> GetAll(int postId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

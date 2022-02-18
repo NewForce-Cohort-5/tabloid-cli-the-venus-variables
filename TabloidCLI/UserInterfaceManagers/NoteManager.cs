@@ -72,7 +72,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
             Console.WriteLine(prompt);
 
-            List<Note> notes = _noteRepository.GetAll();
+            List<Note> notes = _noteRepository.GetAll(_postId);
 
             for (int i = 0; i < notes.Count; i++)
             {
@@ -86,37 +86,6 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 int choice = int.Parse(input);
                 return notes[choice - 1];
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Invalid Selection");
-                return null;
-            }
-        }
-
-        private Post PChoose(string prompt = null)
-        {
-            if (prompt == null)
-            {
-                prompt = "Please choose a Post:";
-            }
-
-            Console.WriteLine(prompt);
-
-            List<Post> posts = _postRepository.GetAll();
-
-            for (int i = 0; i < posts.Count; i++)
-            {
-                Post post = posts[i];
-                Console.WriteLine($" {i + 1}) {post.Title}");
-            }
-            Console.Write("> ");
-
-            string input = Console.ReadLine();
-            try
-            {
-                int choice = int.Parse(input);
-                return posts[choice - 1];
             }
             catch (Exception ex)
             {
@@ -148,7 +117,6 @@ namespace TabloidCLI.UserInterfaceManagers
     
         }
 
-        +
         private void Remove()
         {
             Note noteToDelete = Choose("Which note would you like to remove?");
