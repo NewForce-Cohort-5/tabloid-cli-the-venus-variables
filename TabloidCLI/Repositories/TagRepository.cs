@@ -207,5 +207,10 @@ namespace TabloidCLI
                 }
             }
         }
+
+        public List<Tag> GetAll(int postId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
