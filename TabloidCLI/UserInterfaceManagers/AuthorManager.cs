@@ -154,7 +154,14 @@ namespace TabloidCLI.UserInterfaceManagers
             Author authorToDelete = Choose("Which author would you like to remove?");
             if (authorToDelete != null)
             {
-                _authorRepository.Delete(authorToDelete.Id);
+                try
+                {
+                    _authorRepository.Delete(authorToDelete.Id);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Can't delete!  Remove all tags and posts associated with this author first.");
+                }
             }
         }
     }
